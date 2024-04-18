@@ -1,0 +1,40 @@
+=============== Apr 18, 2024 (MSK) ===============
+22:43:43.595359 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+22:43:43.598357 db@open opening
+22:43:43.599359 version@stat F·[] S·0B[] Sc·[]
+22:43:43.600358 db@janitor F·2 G·0
+22:43:43.600358 db@open done T·2.0003ms
+=============== Apr 18, 2024 (MSK) ===============
+22:44:30.788164 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+22:44:30.788164 version@stat F·[] S·0B[] Sc·[]
+22:44:30.789165 db@open opening
+22:44:30.789165 journal@recovery F·1
+22:44:30.789165 journal@recovery recovering @1
+22:44:30.791166 memdb@flush created L0@2 N·1 S·123B "version,v1":"version,v1"
+22:44:30.792164 version@stat F·[1] S·123B[123B] Sc·[0.25]
+22:44:30.797166 db@janitor F·3 G·0
+22:44:30.797166 db@open done T·8.0012ms
+22:45:18.582822 db@close closing
+22:45:18.583349 db@close done T·526.8µs
+=============== Apr 18, 2024 (MSK) ===============
+22:45:21.581761 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+22:45:21.581761 version@stat F·[1] S·123B[123B] Sc·[0.25]
+22:45:21.581761 db@open opening
+22:45:21.581761 journal@recovery F·1
+22:45:21.582762 journal@recovery recovering @3
+22:45:21.583763 memdb@flush created L0@5 N·490 S·14KiB "loc..seq,v40":"n:\xf2..ong,v8"
+22:45:21.584762 version@stat F·[2] S·14KiB[14KiB] Sc·[0.50]
+22:45:21.589763 db@janitor F·4 G·0
+22:45:21.589763 db@open done T·8.0021ms
+23:34:05.956092 memdb@flush N·37597 S·3MiB
+23:34:05.980888 memdb@flush created L0@9 N·37597 S·723KiB "loc..seq,v514":"n:\xff..ong,v3652"
+23:34:05.980888 version@stat F·[3] S·738KiB[738KiB] Sc·[0.75]
+23:34:05.981410 memdb@flush committed F·1 T·24.8002ms
+23:34:05.982437 journal@remove removed @6
+23:34:21.645352 table@compaction L0·2 -> L1·0 S·738KiB Q·38257
+23:34:21.666386 table@build created L1@10 N·12331 S·371KiB "loc..seq,v514":"n:\xff..ong,v3652"
+23:34:21.666386 version@stat F·[1 1] S·371KiB[123B 371KiB] Sc·[0.25 0.00]
+23:34:21.667411 table@compaction committed F-1 S-366KiB Ke·0 D·25756 T·22.0566ms
+23:34:21.667929 table@remove removed @9
+23:54:27.457712 db@close closing
+23:54:27.458254 db@close done T·542.6µs
