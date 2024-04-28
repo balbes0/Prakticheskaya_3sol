@@ -1,6 +1,42 @@
 abi = """
 [
 	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "idAD",
+				"type": "uint256"
+			}
+		],
+		"name": "buyEstate",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "price",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "estateID",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "date",
+				"type": "uint256"
+			}
+		],
+		"name": "createAd",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
 		"anonymous": false,
 		"inputs": [
 			{
@@ -69,6 +105,36 @@ abi = """
 		"type": "event"
 	},
 	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "addressEstate",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "square",
+				"type": "uint256"
+			},
+			{
+				"internalType": "enum EstateAgency.estateType",
+				"name": "esType",
+				"type": "uint8"
+			}
+		],
+		"name": "createEstate",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "deposit",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
 		"anonymous": false,
 		"inputs": [
 			{
@@ -107,6 +173,24 @@ abi = """
 		"type": "event"
 	},
 	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "adID",
+				"type": "uint256"
+			},
+			{
+				"internalType": "enum EstateAgency.advertisementType",
+				"name": "adType",
+				"type": "uint8"
+			}
+		],
+		"name": "updateAdType",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
 		"anonymous": false,
 		"inputs": [
 			{
@@ -143,6 +227,37 @@ abi = """
 		],
 		"name": "updatedEstateActive",
 		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "estateID",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bool",
+				"name": "isActive",
+				"type": "bool"
+			}
+		],
+		"name": "updateEstateActive",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			}
+		],
+		"name": "withdraw",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
 	},
 	{
 		"inputs": [
@@ -205,72 +320,6 @@ abi = """
 			}
 		],
 		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "idAD",
-				"type": "uint256"
-			}
-		],
-		"name": "buyEstate",
-		"outputs": [],
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "price",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "estateID",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "date",
-				"type": "uint256"
-			}
-		],
-		"name": "createAd",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "addressEstate",
-				"type": "string"
-			},
-			{
-				"internalType": "uint256",
-				"name": "square",
-				"type": "uint256"
-			},
-			{
-				"internalType": "enum EstateAgency.estateType",
-				"name": "esType",
-				"type": "uint8"
-			}
-		],
-		"name": "createEstate",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "deposit",
-		"outputs": [],
-		"stateMutability": "payable",
 		"type": "function"
 	},
 	{
@@ -419,59 +468,8 @@ abi = """
 		],
 		"stateMutability": "view",
 		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "adID",
-				"type": "uint256"
-			},
-			{
-				"internalType": "enum EstateAgency.advertisementType",
-				"name": "adType",
-				"type": "uint8"
-			}
-		],
-		"name": "updateAdType",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "estateID",
-				"type": "uint256"
-			},
-			{
-				"internalType": "bool",
-				"name": "isActive",
-				"type": "bool"
-			}
-		],
-		"name": "updateEstateActive",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "amount",
-				"type": "uint256"
-			}
-		],
-		"name": "withdraw",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
 	}
 ]
 """
 
-contract_address = """
-0xD7ACd2a9FD159E69Bb102A1ca21C9a3e3A5F771B
-"""
+address_contract = "0xe90d6c1EFA30Dc96272fd355F53e5A7426eF8Ba4"
