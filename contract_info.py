@@ -271,6 +271,11 @@ abi = """
 		"outputs": [
 			{
 				"internalType": "uint256",
+				"name": "advertisementID",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
 				"name": "price",
 				"type": "uint256"
 			},
@@ -374,6 +379,11 @@ abi = """
 				"components": [
 					{
 						"internalType": "uint256",
+						"name": "advertisementID",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
 						"name": "price",
 						"type": "uint256"
 					},
@@ -472,4 +482,4 @@ abi = """
 ]
 """
 
-address_contract = "0xe90d6c1EFA30Dc96272fd355F53e5A7426eF8Ba4"
+address_contract = "0x1A309D253B07aff76a482c27Fb036FCEC4c94389"

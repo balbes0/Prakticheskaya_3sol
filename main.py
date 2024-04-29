@@ -126,15 +126,15 @@ def getAds():
         ads = contract.functions.getAds().call()
         if len(ads) > 0:
             for ad in ads:
-                if ad[3] == "0x0000000000000000000000000000000000000000":
+                if ad[4] == "0x0000000000000000000000000000000000000000":
                     buyer = "Отсутствует"
                 else:
-                    buyer = ad[3]
-                if ad[5] == 0:
+                    buyer = ad[4]
+                if ad[6] == 0:
                     status = "Открыт"
-                elif ad[5] == 1:
+                elif ad[6] == 1:
                     status = "Закрыт"
-                print(f"Цена {ad[0]}, ID недвижимости: {ad[1]}, создатель: {ad[2]}, покупатель: {buyer}, дата: {ad[4]}, статус: {status}")
+            print(f"ID объявления: {ad[0]}, цена: {ad[1]}, ID недвижимости: {ad[2]}, создатель: {ad[3]}, покупатель: {buyer}, дата: {ad[5]}, статус: {status}")
         else:
             print("Объявлений на данный момент нет")
     except Exception as e:
@@ -170,19 +170,19 @@ def GetMyAds(account):
     ads = contract.functions.getAds().call()
     myAds = []
     for ad in ads:
-        if ad[2] == account:
+        if ad[3] == account:
             myAds.append(ad)
     if len(myAds) > 0:
         for ad in myAds:
-            if ad[3] == "0x0000000000000000000000000000000000000000":
+            if ad[4] == "0x0000000000000000000000000000000000000000":
                 buyer = "Отсутствует"
             else:
-                buyer = ad[3]
-            if ad[5] == 0:
+                buyer = ad[4]
+            if ad[6] == 0:
                 status = "Открыт"
-            elif ad[5] == 1:
+            elif ad[6] == 1:
                 status = "Закрыт"
-            print(f"Цена {ad[0]}, ID недвижимости: {ad[1]}, создатель: {ad[2]}, покупатель: {buyer}, дата: {ad[4]}, статус: {status}")
+            print(f"ID объявления: {ad[0]}, цена {ad[1]}, ID недвижимости: {ad[2]}, создатель: {ad[3]}, покупатель: {buyer}, дата: {ad[5]}, статус: {status}")
             return myAds
     else:
         print("У вас пока нет объявлений!")
@@ -192,7 +192,7 @@ def updateAdStatus(account):
         myAds = GetMyAds(account)
         myAdsID = []
         for myAd in myAds:
-            myAdsID.append(myAd[2])
+            myAdsID.append(myAd[3])
         id = int(input("Введите ID недвижимости, статус объявления которого вы хотите изменить: "))
         if account in myAdsID:
             choice = input("Выберите действией:\n1. Открыть объявление\n2. Закрыть объявление\nВыш выбор: ")
@@ -229,7 +229,7 @@ def deposit(account):
             "from": account,
             "value": amount
         })
-        print(f"Транзакция отправлена: {tx_hash.hex()}")
+        print(f"Транзакция отправлена: {tx_hash.hex()}, счет: {account}")
     except Exception as e:
         print(f"Ошибка при депозите средств на контракт: {e}")
 
@@ -310,7 +310,6 @@ if __name__ == '__main__':
                 case "14":
                     print(account)
                 case "15":
-                    w3.geth.personal.lock_account(account)
                     account = ""
                     account = login()
                 case _:
