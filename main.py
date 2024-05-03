@@ -9,10 +9,13 @@ w3.middleware_onion.inject(geth_poa_middleware, layer=0)
 contract = w3.eth.contract(address=address_contract, abi=abi)
 
 def check_password_complexity(password):
-    if len(password) >= 12 and re.search(r'[A-Z]', password) and re.search(r'[a-z]', password) and re.search(r'[0-9]', password):
-        return True
-    else:
-        return False
+    try:
+        if len(password) >= 12 and re.search(r'[A-Z]', password) and re.search(r'[a-z]', password) and re.search(r'[0-9]', password):
+            return True
+        else:
+            return False
+    except Exception as e:
+        print(f"Ошибка: {e}")
 
 def login():
     try:
@@ -40,23 +43,26 @@ def register():
         print(f"Ошибка при регистрации: {e}")
 
 def createEstate(account):
-    address = input("Введите название улицы: ")
-    square = int(input("Введите номер улицы: "))
-    type = int(input("Выберите тип недвижимости:\n1. Дом\n2. Квартира\n3. Промышленный объект\n4. Дача\nВыш выбор: "))
-    if type < 1 or type > 4:
-        type = input("Некорретный выбор! Повторите попытку: ")
-    elif square <= 2:
-        square = input("Номер улицы должен быть больше двух! Повторите попытку: ")
-    elif len(address) < 2:
-        address = input("Адрес слишком короткий! Повторите попытку: ")
-    elif (type >= 1 and type <= 4) and square > 2 and len(address) >= 2:
-        try:
-            tx_hash = contract.functions.createEstate(address, square, type-1).transact({
-                "from": account
-            })
-            print(f"Транзакция отправлена: {tx_hash.hex()}")
-        except Exception as e:
-            print(f"Ошибка при создании недвижимости: {e}")
+    try:
+        address = input("Введите название улицы: ")
+        square = int(input("Введите номер улицы: "))
+        type = int(input("Выберите тип недвижимости:\n1. Дом\n2. Квартира\n3. Промышленный объект\n4. Дача\nВыш выбор: "))
+        if type < 1 or type > 4:
+            type = input("Некорретный выбор! Повторите попытку: ")
+        elif square <= 2:
+            square = input("Номер улицы должен быть больше двух! Повторите попытку: ")
+        elif len(address) < 2:
+            address = input("Адрес слишком короткий! Повторите попытку: ")
+        elif (type >= 1 and type <= 4) and square > 2 and len(address) >= 2:
+            try:
+                tx_hash = contract.functions.createEstate(address, square, type-1).transact({
+                    "from": account
+                })
+                print(f"Транзакция отправлена: {tx_hash.hex()}")
+            except Exception as e:
+                print(f"Ошибка при создании недвижимости: {e}")
+    except Exception as e:
+        print(f"Ошибка при создании недвижимости: {e}")
  
 def getEstates():
     try:
@@ -162,30 +168,32 @@ def updateEstateStatus(account):
             })
         else:
             print("Такой недвижимости не существует или вы не его владелец!")
-             
     except Exception as e:
         print(f"Ошибка при изменени статуса недвижимости: {e}")
 
 def GetMyAds(account):
-    ads = contract.functions.getAds().call()
-    myAds = []
-    for ad in ads:
-        if ad[3] == account:
-            myAds.append(ad)
-    if len(myAds) > 0:
-        for ad in myAds:
-            if ad[4] == "0x0000000000000000000000000000000000000000":
-                buyer = "Отсутствует"
-            else:
-                buyer = ad[4]
-            if ad[6] == 0:
-                status = "Открыт"
-            elif ad[6] == 1:
-                status = "Закрыт"
-            print(f"ID объявления: {ad[0]}, цена {ad[1]}, ID недвижимости: {ad[2]}, создатель: {ad[3]}, покупатель: {buyer}, дата: {ad[5]}, статус: {status}")
-            return myAds
-    else:
-        print("У вас пока нет объявлений!")
+    try:
+        ads = contract.functions.getAds().call()
+        myAds = []
+        for ad in ads:
+            if ad[3] == account:
+                myAds.append(ad)
+        if len(myAds) > 0:
+            for ad in myAds:
+                if ad[4] == "0x0000000000000000000000000000000000000000":
+                    buyer = "Отсутствует"
+                else:
+                    buyer = ad[4]
+                if ad[6] == 0:
+                    status = "Открыт"
+                elif ad[6] == 1:
+                    status = "Закрыт"
+                print(f"ID объявления: {ad[0]}, цена {ad[1]}, ID недвижимости: {ad[2]}, создатель: {ad[3]}, покупатель: {buyer}, дата: {ad[5]}, статус: {status}")
+                return myAds
+        else:
+            print("У вас пока нет объявлений!")
+    except Exception as e:
+        print(f"Ошибка при получении своих объявлений: {e}")
 
 def updateAdStatus(account):
     try:

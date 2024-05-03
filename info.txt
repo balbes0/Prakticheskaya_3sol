@@ -5,3 +5,5 @@
 pass: 123
 Публичный ключ: 0xc09f63FD887b7e82e9da5a8f0F90D2B09143Eb08, пароль: 123
 Публичный ключ: 0x3b38044A45Bc50f658249cb2BD550Eb534E559F9, пароль: Aasdasdasasda1231
+Публичный ключ: 0x9F3dE410DcCa706f7665A4E23848EBaFD86Cc2bd, пароль: Agavagav123123
+Публичный ключ: 0xaf65622a37f82AcCb2018D8e7cd38776f6B2A029, пароль: ASdasdas1233
